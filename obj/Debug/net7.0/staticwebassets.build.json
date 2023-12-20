@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "lWVKn1aYT/mxAHL6rtC2RY8uQFUaf8o84S0FIL2A3co=",
+  "Source": "guessing_game_backend",
+  "BasePath": "_content/guessing_game_backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

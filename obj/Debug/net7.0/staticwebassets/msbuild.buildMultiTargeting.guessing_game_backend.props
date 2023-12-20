@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\guessing_game_backend.props" />
+</Project>
