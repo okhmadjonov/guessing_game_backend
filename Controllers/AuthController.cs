@@ -1,4 +1,5 @@
 ﻿using guessing_game_backend.Dto;
+using guessing_game_backend.FluentValidation;
 using guessing_game_backend.Helpers;
 using guessing_game_backend.Models;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,15 @@ namespace guessing_game_backend.Controllers
         [HttpPost("register")]
         public ActionResult<User> Register(UserDto request)
         {
+            // Validate the request
+            var validator = new UserDtoValidator();
+            var validationResult = validator.Validate(request);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.Select(error => error.ErrorMessage));
+            }
+
             User registeredUser = _jwtService.Registration(request);
             if (registeredUser is not null)
             {
@@ -35,15 +45,25 @@ namespace guessing_game_backend.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto request)
         {
+            // Validate the request
+            var validator = new LoginDtoValidator();
+            var validationResult = validator.Validate(request);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.Select(error => error.ErrorMessage));
+            }
+
             try
             {
-                return Ok( _jwtService.Login(request));
+                return Ok(_jwtService.Login(request));
             }
             catch (Exception e)
             {
                 return BadRequest("Incorrect User or Password");
             }
         }
+
 
 
     }

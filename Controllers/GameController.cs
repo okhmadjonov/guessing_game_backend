@@ -111,7 +111,7 @@ namespace guessing_game_backend.Controllers
                         {
                             if (session.Attempts == 0)
                             {
-                                session.Description.Add(userInput + " => " + $"Sorry, you didn't guess the number. The secret number was {string.Join("", session.SecretNumber)}.");
+                                session.Description.Add(userInput + " => " + $"Sorry, you are failed. The secret number was {string.Join("", session.SecretNumber)}.");
                                 _memoryCache.Remove(sessionId);
                                 game.Win = false;
                                 game.Description = session.Description;
@@ -133,7 +133,7 @@ namespace guessing_game_backend.Controllers
                                     await _userRepository.UpdateUser(user.Id, id);
                                   }
                                  }
-                                return Ok($"Sorry, you didn't guess the number. The secret number was {string.Join("", session.SecretNumber)}.");
+                                return Ok($"Sorry, you are failed. The secret number was {string.Join("", session.SecretNumber)}.");
                             }
                             session.Description.Add(userInput + " => " + $"Incorrect guess. M: {m}, P: {p}. You have {session.Attempts} attempts left.");
                             return Ok($"Incorrect guess. M: {m}, P: {p}. You have {session.Attempts} attempts left.");

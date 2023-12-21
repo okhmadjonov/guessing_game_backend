@@ -18,21 +18,21 @@
         private int[] GenerateSecretNumber()
         {
             Random random = new Random();
-            int[] digits = new int[4] { 7,0,4,6};
+            //int[] digits = new int[4] { 7,0,4,6};
+            int[] digits = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                while (true)
+                {
+                    int digit = random.Next(0, 10);
 
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    while (true)
-            //    {
-            //        int digit = random.Next(0, 10);
-
-            //        if (!digits.Contains(digit))
-            //        {
-            //            digits[i] = digit;
-            //            break;
-            //        }
-            //    }
-            //}
+                    if (!digits.Contains(digit))
+                    {
+                        digits[i] = digit;
+                        break;
+                    }
+                }
+            }
             return digits;
         }
 

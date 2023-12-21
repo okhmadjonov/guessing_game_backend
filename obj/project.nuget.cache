@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "bLd5UhTSh4kUttFveyrNBcO5vWL7oPq/82goCoHr1Yk6XE17xF4PWS7OxqqiJP7nuZ0R582gNk5tlZxsVpHSaw==",
+  "dgSpecHash": "GwKtne/wnslxE3tRyoJickxwp5jt2NKivzrp+A8BjkLgNfhPfOddfm/MDTcHuMQ5hwPZTZ/BHBGNnM8Ph1DbMQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\nemo\\Desktop\\new full\\GuessGame\\guessing_game_backend\\guessing_game_backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nemo\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\nemo\\.nuget\\packages\\fluentvalidation\\11.8.1\\fluentvalidation.11.8.1.nupkg.sha512",
+    "C:\\Users\\nemo\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\nemo\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\nemo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\nemo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.0\\microsoft.aspnetcore.authentication.jwtbearer.7.0.0.nupkg.sha512",
     "C:\\Users\\nemo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.0\\microsoft.aspnetcore.cryptography.internal.7.0.0.nupkg.sha512",

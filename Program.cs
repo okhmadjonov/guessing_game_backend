@@ -1,9 +1,11 @@
+using FluentValidation.AspNetCore;
 using guessing_game_backend.DatabaseConnection;
 using guessing_game_backend.Helpers;
 using guessing_game_backend.Models;
 using guessing_game_backend.Repositories;
 using guessing_game_backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,7 +14,8 @@ using System;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();

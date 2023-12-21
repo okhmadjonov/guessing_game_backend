@@ -36,7 +36,17 @@ namespace guessing_game_backend.Helpers
 
         public static int CalculateP(int[] secretNumber, int[] guess)
         {
-            return secretNumber.Where((digit, index) => digit == guess[index]).Count();
+            int count = 0;
+
+            for (int i = 0; i < secretNumber.Length; i++)
+            {
+                if (secretNumber[i] == guess[i])
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
     }
 }
