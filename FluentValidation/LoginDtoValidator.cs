@@ -14,7 +14,8 @@ namespace guessing_game_backend.FluentValidation
 
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required")
-                .Must(BeValidPassword).WithMessage("Invalid password format");
+                              .Must(BeValidPassword).WithMessage("Invalid password format, Password must contain one Uppercase, one lawerxase , number and stmbol !");
+
         }
 
         private bool BeValidPassword(string password)

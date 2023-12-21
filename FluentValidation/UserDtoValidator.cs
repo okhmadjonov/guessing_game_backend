@@ -8,8 +8,8 @@ namespace guessing_game_backend.FluentValidation
         public UserDtoValidator()
         {
             RuleFor(x => x.Name)
-                .NotEmpty().WithMessage("Name is required")
-                .Must(BeValidName).WithMessage("Invalid name format");
+                .NotEmpty().WithMessage("Name is required");
+               
 
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Email is required")
@@ -18,7 +18,7 @@ namespace guessing_game_backend.FluentValidation
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required")
                 .MinimumLength(6).WithMessage("Password must be at least 6 characters long")
-                .Must(BeValidPassword).WithMessage("Invalid password format");
+                .Must(BeValidPassword).WithMessage("Invalid password format, Password must contain one Uppercase, one lawerxase , number and stmbol !");
         }
 
         private bool BeValidName(string name)
