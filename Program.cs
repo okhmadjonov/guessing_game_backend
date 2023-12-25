@@ -20,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
-builder.Services.AddScoped<IUserRepository, UserService>();
+builder.Services.AddTransient<IUserRepository, UserService>();
 builder.Services.AddScoped<IGameRepository, GameService>();
 builder.Services.AddScoped<JWT>();
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
@@ -56,13 +56,15 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("ContextName")));
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    var configuration = builder.Configuration.GetSection("Jwt"); // Use builder instead of hostContext
+    var configuration = builder.Configuration.GetSection("Jwt"); 
 
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -76,8 +78,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("ContextName")));
 
 var app = builder.Build();
 
@@ -90,7 +90,7 @@ app.UseCors(builder =>
            .SetIsOriginAllowed(_ => true)
            .AllowAnyMethod()
            .AllowAnyHeader();
-    //.AllowCredentials();
+   
 });
 
 app.UseHttpsRedirection();

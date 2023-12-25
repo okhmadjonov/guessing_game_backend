@@ -39,13 +39,8 @@ namespace guessing_game_backend.Controllers
             Game game = new Game();
             game.Attempts = 0;
             _memoryCache.Set("game", game);
-            return Ok($"Welcome to the Number Guessing Game! Guess a number. You have 8 attempts. Your session ID is: {sessionId}");
+            return Ok($"Welcome, You have 8 attempts. Your session ID is: {sessionId}");
         }
-
-
-
-
-
 
         [HttpPost("guess/{sessionId}")]
         public async Task<IActionResult> MakeGuess(string sessionId, string userInput)
@@ -55,17 +50,18 @@ namespace guessing_game_backend.Controllers
             if (_memoryCache.TryGetValue(sessionId, out var gameSession) && gameSession is GameStart session)
             {
                 int[] userGuess;
+                foreach (int digit in session.SecretNumber)
+                {
+                    Console.Write(digit + " ");
+                }
 
                 if (GameLogic.TryParseInput(userInput, out userGuess))
                 {
-                    foreach (int digit in session.SecretNumber)
-                    {
-                        Console.Write(digit + " ");
-                    }
+                   
 
                     if (userGuess.SequenceEqual(session.SecretNumber))
                     {
-                        session.Description.Add(userInput + " => " + "Congratulations! You've guessed the number.");
+                        session.Description.Add(userInput + " => " + "Congratulations! You find the number.");
                         game.Attempts++;
                         _memoryCache.Remove(sessionId);
                         game.Win = true;
@@ -79,20 +75,20 @@ namespace guessing_game_backend.Controllers
 
                             if (user != null && user.Id != 0)
                             {
-                                // Ensure the Games collection is initialized
+                              
                                 if (user.Games == null)
                                 {
                                     user.Games = new List<Game>();
                                 }
 
-                                // Associate the game with the user
+                              
                                 user.Games.Add(game);
 
-                                // Update the user in the repository
+                             
                                 await _userRepository.UpdateUser(user.Id, gameId);
                             }
 
-                            return Ok("Congratulations! You've guessed the number.");
+                            return Ok("Congratulations! You find the number.");
                         }
                     }
                     else
@@ -111,7 +107,7 @@ namespace guessing_game_backend.Controllers
                         {
                             if (session.Attempts == 0)
                             {
-                                session.Description.Add(userInput + " => " + $"Sorry, you are failed. The secret number was {string.Join("", session.SecretNumber)}.");
+                                session.Description.Add(userInput + " => " + $"You are failed. The secret number was {string.Join("", session.SecretNumber)}.");
                                 _memoryCache.Remove(sessionId);
                                 game.Win = false;
                                 game.Description = session.Description;
@@ -121,19 +117,19 @@ namespace guessing_game_backend.Controllers
 
                                 if (user != null)
                                     {
-                                    // Ensure the Games collection is initialized
+                                    
                                     if (user.Games == null)
                                     {
                                         user.Games = new List<Game>();
                                     }
 
-                                    // Associate the game with the user
+                              
                                     user.Games.Add(game);
                                     int id = await _gameRepository.CreateGame(game);
                                     await _userRepository.UpdateUser(user.Id, id);
                                   }
                                  }
-                                return Ok($"Sorry, you are failed. The secret number was {string.Join("", session.SecretNumber)}.");
+                                return Ok($"You are failed. The secret number was {string.Join("", session.SecretNumber)}.");
                             }
                             session.Description.Add(userInput + " => " + $"Incorrect guess. M: {m}, P: {p}. You have {session.Attempts} attempts left.");
                             return Ok($"Incorrect guess. M: {m}, P: {p}. You have {session.Attempts} attempts left.");
