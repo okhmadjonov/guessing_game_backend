@@ -30,7 +30,7 @@ namespace guessing_game_backend.Helpers
 
     };
 
-            var identity = new ClaimsIdentity(new List<Claim> {new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),}, "custom", ClaimTypes.NameIdentifier, ClaimTypes.Role);
+            //var identity = new ClaimsIdentity(new List<Claim> {new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),}, "custom", ClaimTypes.NameIdentifier, ClaimTypes.Role);
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]));
 
@@ -38,7 +38,7 @@ namespace guessing_game_backend.Helpers
             var token = new JwtSecurityToken(
                 issuer: "http://localhost:5123",
                 audience: "http://localhost:5123", 
-                claims: identity.Claims, 
+                claims: claims, 
                 expires: DateTime.Now.AddHours(5),
                 signingCredentials: creds
             );

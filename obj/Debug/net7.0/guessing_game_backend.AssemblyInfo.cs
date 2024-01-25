@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("guessing_game_backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91df0ef8e0c2b6fba4f8fedcc78e90621352a87e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04ce47a85d7bd01f803c8a752eca9c059e722b14")]
 [assembly: System.Reflection.AssemblyProductAttribute("guessing_game_backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("guessing_game_backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

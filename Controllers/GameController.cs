@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace guessing_game_backend.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase
@@ -84,7 +84,8 @@ namespace guessing_game_backend.Controllers
 
                                 await _userRepository.UpdateUser(user.Id, gameId);
                             }
-                            return Ok("Congratulations! You find the number.");
+                            var jsonData = new {status= "Started", message = "Congratulations! You find the number." };
+                            return new JsonResult(jsonData);
                         }
                     }
                     else
@@ -125,14 +126,17 @@ namespace guessing_game_backend.Controllers
                                     await _userRepository.UpdateUser(user.Id, id);
                                   }
                                  }
-                                return Ok($"You are failed. The secret number was {string.Join("", session.SecretNumber)}.");
+                             
+                                var failResult = new { status = "Failed", message = $"You are failed. The secret number was {string.Join("", session.SecretNumber)}."};
+                                return new JsonResult(failResult);
                             }
                             session.Description.Add(userInput + " => " + $"Incorrect guess. M: {m}, P: {p}. You have {session.Attempts} attempts left.");
-                            return Ok($"Incorrect guess. M: {m}, P: {p}. You have {session.Attempts} attempts left.");
+                            var jsonData = new { status = "Started", message = $"Incorrect guess. M: {m}, P: {p}. You have {session.Attempts} attempts left." };
+                            return new JsonResult(jsonData);
 
                         }
 
-                    }   // else end
+                    }   
                 }
                 else
                 {
