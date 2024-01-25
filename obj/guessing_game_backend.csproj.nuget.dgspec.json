@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nemo\\Desktop\\new full\\GuessGame\\guessing_game_backend\\guessing_game_backend.csproj": {}
+    "C:\\Users\\nemo\\Desktop\\2024\\.net\\game\\guessing_game_backend\\guessing_game_backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nemo\\Desktop\\new full\\GuessGame\\guessing_game_backend\\guessing_game_backend.csproj": {
+    "C:\\Users\\nemo\\Desktop\\2024\\.net\\game\\guessing_game_backend\\guessing_game_backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nemo\\Desktop\\new full\\GuessGame\\guessing_game_backend\\guessing_game_backend.csproj",
+        "projectUniqueName": "C:\\Users\\nemo\\Desktop\\2024\\.net\\game\\guessing_game_backend\\guessing_game_backend.csproj",
         "projectName": "guessing_game_backend",
-        "projectPath": "C:\\Users\\nemo\\Desktop\\new full\\GuessGame\\guessing_game_backend\\guessing_game_backend.csproj",
+        "projectPath": "C:\\Users\\nemo\\Desktop\\2024\\.net\\game\\guessing_game_backend\\guessing_game_backend.csproj",
         "packagesPath": "C:\\Users\\nemo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nemo\\Desktop\\new full\\GuessGame\\guessing_game_backend\\obj\\",
+        "outputPath": "C:\\Users\\nemo\\Desktop\\2024\\.net\\game\\guessing_game_backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nemo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,6 +55,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -116,7 +120,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

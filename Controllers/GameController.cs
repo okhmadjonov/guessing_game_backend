@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace guessing_game_backend.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase
@@ -39,7 +40,8 @@ namespace guessing_game_backend.Controllers
             Game game = new Game();
             game.Attempts = 0;
             _memoryCache.Set("game", game);
-            return Ok($"Welcome, You have 8 attempts. Your session ID is: {sessionId}");
+            //return Ok($"Welcome, You have 8 attempts. Your session ID is: {sessionId}");
+            return Ok(JsonConvert.ToString(sessionId));
         }
 
         [HttpPost("guess/{sessionId}")]
@@ -57,8 +59,6 @@ namespace guessing_game_backend.Controllers
 
                 if (GameLogic.TryParseInput(userInput, out userGuess))
                 {
-                   
-
                     if (userGuess.SequenceEqual(session.SecretNumber))
                     {
                         session.Description.Add(userInput + " => " + "Congratulations! You find the number.");
@@ -80,14 +80,10 @@ namespace guessing_game_backend.Controllers
                                 {
                                     user.Games = new List<Game>();
                                 }
-
-                              
                                 user.Games.Add(game);
 
-                             
                                 await _userRepository.UpdateUser(user.Id, gameId);
                             }
-
                             return Ok("Congratulations! You find the number.");
                         }
                     }
@@ -100,7 +96,7 @@ namespace guessing_game_backend.Controllers
                         m = m - p;
 
 
-                         var userIdClaim = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        var userIdClaim = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
                         if (int.TryParse(userIdClaim, out int uId))
@@ -136,7 +132,7 @@ namespace guessing_game_backend.Controllers
 
                         }
 
-                    }
+                    }   // else end
                 }
                 else
                 {

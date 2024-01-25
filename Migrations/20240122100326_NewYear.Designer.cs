@@ -13,8 +13,8 @@ using guessing_game_backend.DatabaseConnection;
 namespace guessinggamebackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231220131016_InitialNe")]
-    partial class InitialNe
+    [Migration("20240122100326_NewYear")]
+    partial class NewYear
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

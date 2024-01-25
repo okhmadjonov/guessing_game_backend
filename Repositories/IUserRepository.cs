@@ -13,5 +13,6 @@ namespace guessing_game_backend.Repositories
         Task UpdateUser(int userId, int gameId);
 
         Task<List<User>> GetLeaderBoard();
+      
     }
 }

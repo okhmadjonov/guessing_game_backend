@@ -7,7 +7,6 @@
         public int Attempts { get; set; }
         public List<string> Description { get; set;}
 
-
         public GameStart()
         {
             SecretNumber = GenerateSecretNumber();
@@ -18,7 +17,7 @@
         private int[] GenerateSecretNumber()
         {
             Random random = new Random();
-            //int[] digits = new int[4] { 7,0,4,6};
+        
             int[] digits = new int[4];
             for (int i = 0; i < 4; i++)
             {
@@ -35,6 +34,5 @@
             }
             return digits;
         }
-
     }
 }

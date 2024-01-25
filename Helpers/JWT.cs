@@ -25,7 +25,9 @@ namespace guessing_game_backend.Helpers
             List<Claim> claims = new List<Claim>
     {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-        
+             new Claim(ClaimTypes.Email, user.Email),
+             
+
     };
 
             var identity = new ClaimsIdentity(new List<Claim> {new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),}, "custom", ClaimTypes.NameIdentifier, ClaimTypes.Role);

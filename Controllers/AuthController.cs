@@ -4,6 +4,7 @@ using guessing_game_backend.Helpers;
 using guessing_game_backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace guessing_game_backend.Controllers
 {
@@ -56,7 +57,11 @@ namespace guessing_game_backend.Controllers
 
             try
             {
-                return Ok(_jwtService.Login(request));
+                var token = _jwtService.Login(request);
+
+                // Return the token as part of a JSON response
+                return Ok(new { token });
+                //return Ok(JsonConvert.ToString(_jwtService.Login(request)));
             }
             catch (Exception e)
             {

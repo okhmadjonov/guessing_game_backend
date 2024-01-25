@@ -56,6 +56,20 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddCors(options=> {
+
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder
+                  .WithOrigins("http://localhost:4200") 
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        }
+        );
+
+});
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("ContextName")));
 builder.Services.AddAuthentication(options =>

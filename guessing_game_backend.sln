@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "guessing_game_backend", "guessing_game_backend.csproj", "{C10C770A-ECB4-4251-BDD7-72E03E904FE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessGameTest", "..\GuessGameTest\GuessGameTest.csproj", "{AD3E50EC-E83B-4CF1-9664-F44497B87B41}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C10C770A-ECB4-4251-BDD7-72E03E904FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C10C770A-ECB4-4251-BDD7-72E03E904FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C10C770A-ECB4-4251-BDD7-72E03E904FE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD3E50EC-E83B-4CF1-9664-F44497B87B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD3E50EC-E83B-4CF1-9664-F44497B87B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD3E50EC-E83B-4CF1-9664-F44497B87B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD3E50EC-E83B-4CF1-9664-F44497B87B41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

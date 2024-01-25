@@ -26,13 +26,15 @@ namespace guessing_game_backend.Services
         public async Task<List<User>> GetLeaderBoard()
         {
             var users = await _context.Users
-             .Include(u => u.Games)
-             .OrderByDescending(u => u.Games.Count(g => g.Win))
-             .ThenBy(u => u.Games.Where(g => g.Win).Min(g => g.Attempts))
-             .ToListAsync();
+                .Where(u => u.Games.Any(g => g.Win)) 
+                .Include(u => u.Games.Where(g => g.Win))
+                .OrderByDescending(u => u.Games.Count(g => g.Win))
+                .ThenBy(u => u.Games.Where(g => g.Win).Min(g => g.Attempts))
+                .ToListAsync();
 
             return users;
         }
+
 
         public async Task<User> GetUserByEmail(string email)
         {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace guessing_game_backend.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LeaderBoardController : ControllerBase
@@ -20,6 +20,7 @@ namespace guessing_game_backend.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+           
             return Ok(await _userRepository.GetLeaderBoard());
         }
     }
