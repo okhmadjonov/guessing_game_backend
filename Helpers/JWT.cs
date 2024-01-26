@@ -30,8 +30,6 @@ namespace guessing_game_backend.Helpers
 
     };
 
-            //var identity = new ClaimsIdentity(new List<Claim> {new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),}, "custom", ClaimTypes.NameIdentifier, ClaimTypes.Role);
-
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -47,25 +45,29 @@ namespace guessing_game_backend.Helpers
             return jwt;
         }
 
-
-
-
         public string Login(LoginDto loginDto)
         {
             if (loginDto.Email != null)
             {
-                var user = _userRepository.GetUserByEmail(loginDto.Email);
-
-                var verify = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Result?.Password);
-                if (verify)
+                var user = _userRepository.GetUserByEmail(loginDto.Email).Result;
+                if (user == null)
                 {
-                    if (user.Result != null) return CreateToken(user.Result);
+                    return "User not found";
                 }
-                return "wrong";
+               
+                    bool verify = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password);
+                    if (verify)
+                    {
+                        return CreateToken(user);
+                    }
+                    else
+                    {
+                        return "Incorrect password";
+                    }
             }
-
-            return "wrong";
+            return "User not found"; 
         }
+
 
 
         public User Registration(UserDto userDto)

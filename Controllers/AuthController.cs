@@ -13,8 +13,6 @@ namespace guessing_game_backend.Controllers
     public class AuthController : ControllerBase
     {
         private readonly JWT _jwtService;
-
-
         public AuthController(JWT jWT)
         {
             _jwtService = jWT;
@@ -23,7 +21,7 @@ namespace guessing_game_backend.Controllers
         [HttpPost("register")]
         public ActionResult<User> Register(UserDto request)
         {
-            // Validate the request
+            
             var validator = new UserDtoValidator();
             var validationResult = validator.Validate(request);
 
@@ -46,7 +44,6 @@ namespace guessing_game_backend.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto request)
         {
-            // Validate the request
             var validator = new LoginDtoValidator();
             var validationResult = validator.Validate(request);
 
@@ -54,19 +51,41 @@ namespace guessing_game_backend.Controllers
             {
                 return BadRequest(validationResult.Errors.Select(error => error.ErrorMessage));
             }
-
-            try
+            else
             {
-                var token = _jwtService.Login(request);
+                try
+                {
+                    var token = _jwtService.Login(request);
+                    if (token == null)
+                    {
+                        return Unauthorized("Incorrect User or Password");
+                    }
+                    else
+                    {
+                        if(token == "User not found")
+                        {
+                            string[] myArr = new string[] { "User not found" }; 
+                            return BadRequest(new { errors = new { Warning = myArr}});
+                        }
 
-                // Return the token as part of a JSON response
-                return Ok(new { token,email = request.Email });
-                //return Ok(JsonConvert.ToString(_jwtService.Login(request)));
+                        if (token == "Incorrect password")
+                        {
+                            string[] myArr = new string[] { "Incorrect password" };
+                            return BadRequest(new { errors = new { Warning = myArr } });
+                        }
+
+                        return Ok(new { token, email = request.Email });
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    return StatusCode(500, "Internal server error");
+                }
             }
-            catch (Exception e)
-            {
-                return BadRequest("Incorrect User or Password");
-            }
+
+         
         }
+
     }
 }
